@@ -12,21 +12,28 @@ def main():
     plt.show()
 
 def open_aa_file()-> tuple[list, list]:
+    """
+    Return arguments: Nodes
+           attacks  : Edges
+    """
     arguments = []
     attacks = []
-    with open("./af_nbr20_500_3_0.4", "r") as aa:
-        for arg_att in aa:
-            try:
-                if arg_att.startswith("arg"):
-                    arg_num = arg_att.removeprefix("arg(").removesuffix(").\n")
-                    arguments.append(arg_num)
-                if arg_att.startswith("att"):
-                    att_num, att_num2 = arg_att.removeprefix("att(").removesuffix(").\n").split(",")
-                    attacks.append((att_num,att_num2))
+    try:
+        with open("./af_nbr20_500_3_0.4", "r") as aa:
+            for arg_att in aa:
+                try:
+                    if arg_att.startswith("arg"):
+                        arg_num = arg_att.removeprefix("arg(").removesuffix(").\n")
+                        arguments.append(arg_num)
+                    if arg_att.startswith("att"):
+                        att_num, att_num2 = arg_att.removeprefix("att(").removesuffix(").\n").split(",")
+                        attacks.append((att_num,att_num2))
 
-            except Exception as e:
-                print("Error : ", e)
-
+                except Exception as e:
+                    print("Error : ", e)
+    except IOError:
+        print("I\O Error!")
+    
     return arguments, attacks
 
 if __name__ == "__main__":
