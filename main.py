@@ -13,8 +13,9 @@ def main():
 
 def open_aa_file()-> tuple[list, list]:
     """
-    Return arguments: Nodes
-           attacks  : Edges
+    Return 
+        arguments: Nodes
+        attacks  : Edges
     """
     arguments = []
     attacks = []
